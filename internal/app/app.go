@@ -71,6 +71,9 @@ func NewRouterWithDB(db *gorm.DB) http.Handler {
 
 	router := gin.New()
 	router.Use(middleware.BodyLimit(1 << 20))
+	router.GET("/", func(c *gin.Context) {
+		c.Redirect(http.StatusFound, "/catalog")
+	})
 	router.POST("/web/login", middleware.RequireSameOrigin(), authHandler.BrowserLogin)
 	if err := webHandler.Register(router); err != nil {
 		panic(err)
