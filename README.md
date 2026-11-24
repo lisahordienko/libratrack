@@ -83,9 +83,13 @@ export TLS_KEY_FILE=/absolute/path/to/key.pem
 
 ### 3. Запуск сервера
 
+Для автоматичного запуску PostgreSQL і локального Go-сервера використайте:
+
 ```bash
-go run ./cmd/api
+./scripts/run-local.sh
 ```
+
+Скрипт читає `.env`, піднімає тільки контейнер `postgres`, чекає готовності бази й запускає API через `go run ./cmd/api`.
 
 Сервіс буде доступний за адресою `http://localhost:8080`.
 
